@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TASK·BOARD
 
-## Getting Started
+A minimal, high-performance task management application built as a full-stack assessment submission. The goal of this project is to deliver a robust, secure, and visually polished experience while strictly adhering to the assessment requirements.
 
-First, run the development server:
+## Live Demo
+**[taskboard-mu-nine.vercel.app](https://taskboard-mu-nine.vercel.app)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack & Architecture
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Database**: PostgreSQL (via Supabase)
+- **ORM**: Prisma
+- **Styling**: Tailwind CSS + Custom CSS Variables for Glassmorphism
+- **Animations**: GSAP
+- **Authentication**: Custom JWT implementation (using `jose`), Bcryptjs password hashing, HTTP-only cookies
+- **Validation**: Zod (Server-side & Action validation)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+1. **Custom Authentication**
+   - Secure sign-up and login flow.
+   - Passwords hashed via `bcryptjs` before storage.
+   - Sessions managed via stateless JWTs securely stored in `HttpOnly`, `Secure` cookies.
+   - Includes a 1-click "Demo Login" for reviewers.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Task Management (Kanban Style)**
+   - 3 rigid statuses: `Todo`, `In Progress`, `Done` (per assessment restrictions).
+   - "Yours, scoped to you": Users can only view and mutate tasks they created, enforced via relational foreign keys.
+   - Fast optimistic UI patterns using Next.js Server Actions.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Premium UI/UX**
+   - Custom design system utilizing CSS variables for consistent glassmorphism and holographic gradients.
+   - GSAP-powered micro-interactions (e.g., floating "graffiti" XP popups) for a gamified feel.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Local Setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Prerequisites
+- Node.js (v18+)
+- npm
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/imskygupta/taskboard.git
+   cd taskboard
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Set up Environment Variables:**
+   Create a `.env` file in the root directory and add:
+   ```env
+   DATABASE_URL="your_postgresql_connection_string"
+   JWT_SECRET_KEY="your_super_secret_key"
+   ```
+
+4. **Initialize Database:**
+   Push the Prisma schema to your database.
+   ```bash
+   npx prisma db push
+   ```
+
+5. **Run the Development Server:**
+   ```bash
+   npm run dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## Deployment
+
+This application is configured for deployment on Vercel. 
+Ensure that `DATABASE_URL` and `JWT_SECRET_KEY` are configured in your Vercel Environment Variables before deploying. A `postinstall` script (`prisma generate`) is included to ensure the Prisma client builds correctly in the Vercel serverless environment.
+
+---
+*Built for the Digitally Next assessment review.*
