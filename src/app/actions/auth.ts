@@ -45,8 +45,9 @@ export async function signup(prevState: any, formData: FormData) {
     });
 
     return { success: true };
-  } catch (error) {
-    return { error: "An unexpected error occurred" };
+  } catch (error: any) {
+    console.error("Signup error:", error);
+    return { error: error.message || "An unexpected error occurred" };
   }
 }
 
@@ -80,8 +81,9 @@ export async function login(prevState: any, formData: FormData) {
     });
 
     return { success: true };
-  } catch (error) {
-    return { error: "An unexpected error occurred" };
+  } catch (error: any) {
+    console.error("Login error:", error);
+    return { error: error.message || "An unexpected error occurred" };
   }
 }
 
@@ -114,7 +116,8 @@ export async function demoLogin() {
     });
 
     return { success: true };
-  } catch (error) {
-    return { error: "Demo login failed" };
+  } catch (error: any) {
+    console.error("Demo login error:", error);
+    return { error: error.message || "Demo login failed" };
   }
 }
