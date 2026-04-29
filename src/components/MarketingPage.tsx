@@ -88,7 +88,7 @@ export function MarketingPage() {
             <div className="hero-text pt-12 flex flex-wrap items-center gap-4 text-xs font-mono text-muted-foreground">
               <span>Next.js · App Router</span>
               <span className="text-border">/</span>
-              <span>Prisma · SQLite</span>
+              <span>Prisma · PostgreSQL</span>
               <span className="text-border">/</span>
               <span>jose JWT · HTTP-only</span>
               <span className="text-border">/</span>
@@ -178,7 +178,7 @@ export function MarketingPage() {
             <div className="glass-card p-8 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-8 text-6xl font-serif text-white/5 transition-transform group-hover:scale-110 group-hover:-translate-y-2 group-hover:translate-x-2">02</div>
               <h3 className="text-xl font-bold mb-4 relative z-10">Add a task</h3>
-              <p className="text-muted-foreground leading-relaxed relative z-10">One input field. Title only. Validated server-side, written through Prisma to SQLite.</p>
+              <p className="text-muted-foreground leading-relaxed relative z-10">One input field. Title only. Validated server-side, written through Prisma to PostgreSQL.</p>
             </div>
             <div className="glass-card p-8 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-8 text-6xl font-serif text-white/5 transition-transform group-hover:scale-110 group-hover:-translate-y-2 group-hover:translate-x-2">03</div>
@@ -196,7 +196,7 @@ export function MarketingPage() {
           <h2 className="serif text-4xl tracking-tight mb-12">What's under the hood.</h2>
           
           <div className="flex flex-wrap justify-center gap-4">
-            {['Next.js', 'TypeScript', 'Prisma', 'SQLite', 'jose', 'bcryptjs', 'zod', 'Tailwind', 'GSAP'].map((tech) => (
+            {['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'jose', 'bcryptjs', 'zod', 'Tailwind', 'GSAP'].map((tech) => (
               <div key={tech} className="px-6 py-3 rounded-full border border-white/10 bg-white/5 font-mono text-sm">
                 {tech}
               </div>

@@ -32,7 +32,7 @@ export default function DocsPage() {
           <ul className="list-disc pl-6 space-y-2">
             <li><strong className="text-foreground">Framework:</strong> Next.js 15 (App Router)</li>
             <li><strong className="text-foreground">Language:</strong> TypeScript</li>
-            <li><strong className="text-foreground">Database:</strong> SQLite</li>
+            <li><strong className="text-foreground">Database:</strong> PostgreSQL (Supabase)</li>
             <li><strong className="text-foreground">ORM:</strong> Prisma</li>
             <li><strong className="text-foreground">Styling:</strong> Tailwind CSS v3, CSS variables for Glassmorphism</li>
             <li><strong className="text-foreground">Animations:</strong> GSAP</li>
@@ -88,7 +88,7 @@ model Task {
             </li>
             <li>
               <strong className="text-foreground block mb-2">Setup Database</strong>
-              <p className="mb-2">Initialize the SQLite database and run Prisma migrations:</p>
+              <p className="mb-2">Initialize the PostgreSQL database and run Prisma migrations:</p>
               <pre className="bg-black/50 p-4 rounded-lg border border-white/10"><code>npx prisma db push</code></pre>
             </li>
             <li>
