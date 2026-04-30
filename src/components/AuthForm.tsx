@@ -22,14 +22,17 @@ export function AuthForm() {
   );
 
   const [isDemoPending, startDemoTransition] = useState(false);
+  const [demoError, setDemoError] = useState<string | null>(null);
 
   const handleDemoLogin = () => {
     startDemoTransition(true);
+    setDemoError(null);
     demoLogin().then((res) => {
       if (res?.success) {
         window.location.href = "/";
       } else {
         startDemoTransition(false);
+        setDemoError(res?.error || "Demo login failed");
       }
     });
   };
@@ -133,6 +136,11 @@ export function AuthForm() {
             {isDemoPending && <Loader2 className="h-4 w-4 animate-spin" />}
             Demo Login (1-click)
           </button>
+          {demoError && (
+            <div className="mt-4 rounded border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-500">
+              {demoError}
+            </div>
+          )}
         </div>
       </div>
     </div>
