@@ -21,20 +21,17 @@ export function AuthForm() {
     null
   );
 
-  const [isDemoPending, startDemoTransition] = useState(false);
-  const [demoError, setDemoError] = useState<string | null>(null);
-
   const handleDemoLogin = () => {
-    startDemoTransition(true);
-    setDemoError(null);
-    demoLogin().then((res) => {
-      if (res?.success) {
-        window.location.href = "/";
-      } else {
-        startDemoTransition(false);
-        setDemoError(res?.error || "Demo login failed");
+    setIsLogin(false);
+    if (formRef.current) {
+      const emailInput = formRef.current.querySelector('input[name="email"]') as HTMLInputElement;
+      const passInput = formRef.current.querySelector('input[name="password"]') as HTMLInputElement;
+      if (emailInput && passInput) {
+        const randomId = Math.floor(Math.random() * 100000);
+        emailInput.value = `demo${randomId}@taskboard.app`;
+        passInput.value = "DemoPass123!";
       }
-    });
+    }
   };
 
   useEffect(() => {
@@ -130,17 +127,10 @@ export function AuthForm() {
           <button
             type="button"
             onClick={handleDemoLogin}
-            disabled={isDemoPending}
-            className="w-full rounded-md border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 flex justify-center items-center gap-2"
+            className="w-full rounded-md border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/50 flex justify-center items-center gap-2 transition-colors"
           >
-            {isDemoPending && <Loader2 className="h-4 w-4 animate-spin" />}
-            Demo Login (1-click)
+            Auto-fill Demo Credentials
           </button>
-          {demoError && (
-            <div className="mt-4 rounded border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-500">
-              {demoError}
-            </div>
-          )}
         </div>
       </div>
     </div>
