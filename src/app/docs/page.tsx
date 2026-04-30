@@ -37,7 +37,7 @@ export default function DocsPage() {
             <li><strong className="text-foreground">Styling:</strong> Tailwind CSS v3, CSS variables for Glassmorphism</li>
             <li><strong className="text-foreground">Animations:</strong> GSAP</li>
             <li><strong className="text-foreground">Validation:</strong> Zod</li>
-            <li><strong className="text-foreground">Auth Libs:</strong> bcrypt (hashing), jose (JWT)</li>
+            <li><strong className="text-foreground">Auth Libs:</strong> bcryptjs (hashing), jose (JWT)</li>
           </ul>
 
           <hr className="border-border/50 my-8" />
@@ -47,8 +47,8 @@ export default function DocsPage() {
             The app uses a minimal, secure, custom authentication flow to meet the requirements without relying on heavy third-party providers (like NextAuth or Firebase):
           </p>
           <ol className="list-decimal pl-6 space-y-2">
-            <li><strong className="text-foreground">Signup:</strong> User enters email and password. The password is hashed using <code className="bg-white/10 px-1 py-0.5 rounded text-sm text-primary">bcrypt</code> and stored in the database alongside the email.</li>
-            <li><strong className="text-foreground">Login:</strong> User enters credentials. We find the user by email and use <code className="bg-white/10 px-1 py-0.5 rounded text-sm text-primary">bcrypt.compare</code> to verify the password.</li>
+            <li><strong className="text-foreground">Signup:</strong> User enters email and password. The password is hashed using <code className="bg-white/10 px-1 py-0.5 rounded text-sm text-primary">bcryptjs</code> and stored in the database alongside the email.</li>
+            <li><strong className="text-foreground">Login:</strong> User enters credentials. We find the user by email and use <code className="bg-white/10 px-1 py-0.5 rounded text-sm text-primary">bcryptjs.compare</code> to verify the password.</li>
             <li><strong className="text-foreground">Session Creation:</strong> Upon successful login or signup, the <code className="bg-white/10 px-1 py-0.5 rounded text-sm text-primary">jose</code> library is used to sign a JWT containing the user's ID and email.</li>
             <li><strong className="text-foreground">Cookie Storage:</strong> This JWT is stored in an <code className="bg-white/10 px-1 py-0.5 rounded text-sm text-primary">HttpOnly</code>, <code className="bg-white/10 px-1 py-0.5 rounded text-sm text-primary">Secure</code> cookie named <code className="bg-white/10 px-1 py-0.5 rounded text-sm text-primary">session</code>.</li>
             <li><strong className="text-foreground">Verification:</strong> Server actions and pages read the cookie, verify the JWT signature using <code className="bg-white/10 px-1 py-0.5 rounded text-sm text-primary">jose</code>, and extract the <code className="bg-white/10 px-1 py-0.5 rounded text-sm text-primary">userId</code> to scope database queries.</li>
