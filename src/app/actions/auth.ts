@@ -7,7 +7,7 @@ import { encrypt } from "@/lib/auth";
 import { cookies } from "next/headers";
 
 const authSchema = z.object({
-  email: z.string().email({ message: "Invalid email address" }),
+  email: z.string().trim().email({ message: "Invalid email address" }),
   password: z.string().min(6, { message: "Password must be at least 6 characters" }),
 });
 

@@ -6,7 +6,7 @@ import { getSession } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 
 const taskSchema = z.object({
-  title: z.string().min(1, { message: "Task title is required" }),
+  title: z.string().trim().min(1, { message: "Task title cannot be empty" }),
 });
 
 const statusSchema = z.object({
